@@ -11,6 +11,10 @@ Este proyecto está configurado para funcionar directamente en GitHub Codespaces
 ### Pasos para iniciar el entorno:
 
 1. **Abrir en Codespaces:**
+   
+   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ArslanSB/Interview)
+   
+   O de forma manual:
    - Haz clic en el botón "Code" en el repositorio
    - Selecciona la pestaña "Codespaces"
    - Crea un nuevo Codespace o abre uno existente
@@ -74,6 +78,26 @@ La aplicación estará disponible en:
 - API: `http://localhost:8000`
 - Documentación interactiva (Swagger): `http://localhost:8000/docs`
 - Documentación alternativa (ReDoc): `http://localhost:8000/redoc`
+
+---
+
+## 📊 Modelo de Datos
+
+El sistema trabaja con dos entidades principales relacionadas entre sí:
+
+```
+ClientModel (clients)                                                                AddressModel (addresses)
+┌──────────────────────────────┐                                                    ┌────────────────────────────────┐
+│ • id (PK)                    │ 1                                                * │ • id (PK)                      │
+│ • name                       │────────────── tiene múltiples direcciones ─────────│ • client_id (FK)               │
+│ • email (UNIQUE)             │                                                    │ • address_type (home/billing)  │
+│ • phone                      │                                                    │ • street, city, state          │
+│ • created_at                 │                                                    │ • postal_code, country         │
+│                              │                                                    │ • is_default                   │
+└──────────────────────────────┘                                                    └────────────────────────────────┘
+```
+
+**Relación:** Un cliente puede tener múltiples direcciones (1:N). La relación incluye cascade delete, lo que significa que al eliminar un cliente se eliminan todas sus direcciones asociadas.
 
 ---
 
